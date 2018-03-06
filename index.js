@@ -60,8 +60,21 @@ app.put('/events/:uid', (req, res) => {
     console.log(events)
     res.send(events[req.params.uid])
   }
-
-
 })
+
+app.delete('/events/:uid', (req, res) => {
+  if ((req.params.uid < 0 || req.params.uid > events.length - 1) || isNaN(req.params.uid)) {
+    console.log('delete is status 200')
+  }
+})
+
+
+
+
+
+
+
+
+
 
 app.listen(port, () => console.log('Listening!'))
