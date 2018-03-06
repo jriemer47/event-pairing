@@ -45,4 +45,23 @@ app.post('/events', (req, res) => {
   res.send(events)
 })
 
+app.put('/events/:uid', (req, res) => {
+  if ((req.params.uid < 0 || req.params.uid > events.length - 1) || isNaN(req.params.uid)) {
+    console.log('KEEP TRYING')
+    res.sendStatus(404)
+  } else {
+    events[req.params.uid] = {
+      uid: req.params.uid,
+      title: 'changed event',
+      description: 'updating',
+      date: 'TBD',
+      time: 'TBD'
+    }
+    console.log(events)
+    res.send(events[req.params.uid])
+  }
+
+
+})
+
 app.listen(port, () => console.log('Listening!'))
