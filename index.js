@@ -33,4 +33,16 @@ app.get('/events/:uid', (req, res) => {
   }
 })
 
+app.post('/events', (req, res) => {
+  let newEvent = {
+    uid: events.length,
+    title: 'New Event',
+    description: 'This is a new event!!',
+    date: '2020',
+    time: 'Next decade'
+  }
+  events.push(newEvent)
+  res.send(events)
+})
+
 app.listen(port, () => console.log('Listening!'))
