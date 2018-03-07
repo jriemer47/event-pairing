@@ -44,18 +44,21 @@ app.post('/events', (req, res) => {
 })
 
 app.put('/events/:uid', (req, res) => {
-  if ((req.params.uid < 0 || req.params.uid > events.length - 1) || isNaN(req.params.uid)) {
-    res.sendStatus(404)
-  } else {
-    events[req.params.uid] = {
-      uid: req.params.uid,
-      title: 'changed event',
-      description: 'updating',
-      date: 'TBD',
-      time: 'TBD'
+  events.forEach(function(element, index) {
+    if (Number(element.uid) === Number(req.params.uid)) {
+      events[index] = {
+        uid: Number(req.params.uid),
+        title: 'changed event',
+        description: 'updating',
+        date: 'TBD',
+        time: 'TBD'
+      }
+
+      res.send(events[req.params.uid])
     }
-    res.send(events[req.params.uid])
-  }
+  })
+
+    res.sendStatus(404)
 })
 
 app.delete('/events/:uid', (req, res) => {
