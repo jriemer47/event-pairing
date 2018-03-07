@@ -44,7 +44,7 @@ app.post('/events', (req, res) => {
 })
 
 app.put('/events/:uid', (req, res) => {
-  events.forEach(function(element, index) {
+  events.forEach(element, index) => {
     if (Number(element.uid) === Number(req.params.uid)) {
       events[index] = {
         uid: Number(req.params.uid),
